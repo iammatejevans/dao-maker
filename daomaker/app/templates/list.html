@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block mycontent %}
+
+{% load filters %}
+
+<h1 style="margin-bottom: 3rem;">Tasks</h1>
+<a href="/"><button type="button" class="btn btn-outline-primary" style="margin-bottom: 3rem;">Task input</button></a>
+
+{% if object_list %}
+<table id="TaskTable" class="display">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Description</th>
+            <th>Site name</th>
+            <th>Image URL</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in object_list %}
+            <tr>
+                <td>{{ task.title|default_if_none:"-" }}</td>
+                <td>{{ task.url|default_if_none:"-" }}</td>
+                <td {% if task.description %} data-toggle="tooltip" data-placement="top"
+                    title="{{ task.description }}" {% endif %}>{{ task.description|truncate:60 }}
+                </td>
+                <td>{{ task.site_name|default_if_none:"-" }}</td>
+                <td>
+                    {% if task.image_url %}
+                        <a href="{{ task.image_url }}">Link</a>
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>{{ task.created }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+
+<p>No tasks yet</p>
+
+{% endif %}
+
+{% endblock %}

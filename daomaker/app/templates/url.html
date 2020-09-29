@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block mycontent %}
+
+    <h1 style="max-width: 300px; margin: auto; margin-bottom: 3rem;">Input URL</h1>
+
+    <div style="max-width: 500px; margin:auto;">
+        <div id="success" class="alert alert-success" style="display:none; margin-bottom:2rem;">
+            Your request was successfully processed
+        </div>
+        <div id="error" class="alert alert-danger" style="display:none; margin-bottom:2rem;">
+            There was an error while handling your request
+        </div>
+    </div>
+
+    <form id="urlParseForm">
+        <div class="form-group">
+            <label for="InputUrl">URL Parser</label>
+            <input type="url" class="form-control" id="InputUrl" aria-describedby="urlHelp" placeholder="Enter url">
+            <small id="urlHelp" class="form-text text-muted">Paste an url you want us to check.</small>
+        </div>
+        <button type="button" class="btn btn-primary" id="urlParseFormButton">Go</button>
+        <a href="./list/" style="float:right;"><button type="button" class="btn btn-outline-primary">Display tasks</button></a>
+    </form>
+
+
+
+
+{% endblock %}
